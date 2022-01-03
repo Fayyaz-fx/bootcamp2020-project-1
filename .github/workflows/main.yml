@@ -41,7 +41,7 @@ jobs:
         run: yarn build
         
       - name: Install Surge globally
-        run: yarn install -g surge
+        run: yarn global add surge
         
       - name: Deployment to surge
         run: surge ./build bootcamp2020-proj-01-bizztechs.surge.sh --token ${{secrets.SURGE_TOKEN}}
