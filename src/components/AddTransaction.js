@@ -35,6 +35,7 @@ const AddTransaction = () => {
         </div>
         <div>
           <label htmlFor='amount'>Transaction Amount</label>
+          <p>please append "-" for negative amount</p>
           <input
             type='number'
             id='amount'
