@@ -3,17 +3,15 @@ import GlobalContext from '../context/GlobalContext'
 
 const Balance = () => {
   const { transactions } = useContext(GlobalContext)
-  const transactionAmounts = transactions.map(
-    (transaction) => transaction.transactionAmount
-  )
-  const balance = transactionAmounts
+  const amounts = transactions.map((transaction) => transaction.amount)
+  const balance = amounts
     .reduce((acc, transaction) => (acc += transaction), 0)
     .toFixed(2)
 
   return (
-    <div className={`text balance ${balance > 0 ? 'plus' : 'minus'}`}>
-      <h3>current balance</h3>
-      <h2>${balance}</h2>
+    <div>
+      <h4>current balance</h4>
+      <h2 className={`money ${balance > 0 ? 'plus' : 'minus'}`}>${balance}</h2>
     </div>
   )
 }

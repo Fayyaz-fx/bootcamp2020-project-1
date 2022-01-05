@@ -4,7 +4,7 @@ import GlobalContext from '../context/GlobalContext'
 
 const AddTransaction = () => {
   const [description, setDescription] = useState('')
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState('')
 
   const { addTransaction } = useContext(GlobalContext)
   const onSubmit = (e) => {
@@ -12,15 +12,16 @@ const AddTransaction = () => {
     const newTransaction = {
       id: new Date().getTime(),
       description,
-      amount,
+      amount: +amount,
     }
+
     addTransaction(newTransaction)
   }
   return (
     <div>
       <h3>add new transaction</h3>
-      <hr />
-      <form onSubmit={onSubmit}>
+
+      <form onSubmit={onSubmit} className='form-control'>
         <div>
           <label htmlFor='description'>Description</label>
           <input
@@ -29,16 +30,20 @@ const AddTransaction = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder='Detail of Transaction'
+            required='required'
           />
         </div>
         <div>
           <label htmlFor='amount'>Transaction Amount</label>
           <input
-            type='text'
+            type='number'
             id='amount'
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => {
+              setAmount(e.target.value)
+            }}
             placeholder='Dollar value of Transaction'
+            required='required'
           />
         </div>
         <button className='btn'>Add Transaction</button>
